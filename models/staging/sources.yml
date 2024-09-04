@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: airbnb
+    schema: raw
+    tables:
+      - name: listings
+        identifier: airbnb__listings
+
+      - name: hosts
+        identifier: airbnb__hosts
+
+      - name: reviews
+        identifier: airbnb__reviews
+        loaded_at_field: date
+        freshness:
+          warn_after: {count: 1, period: hour}
+          error_after: {count: 24, period: hour}

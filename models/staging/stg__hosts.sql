@@ -1,5 +1,5 @@
 with raw_hosts as (
-	select * from raw.airbnb__hosts
+	select * from {{ source('airbnb', 'hosts') }}
 ),
 final as (
 	select
