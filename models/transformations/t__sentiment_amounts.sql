@@ -10,7 +10,7 @@ final as (
     select
         listing_id,
         {% for sentiment_type in sentiment_types -%}
-            sum(case when listing_sentiment = '{{ sentiment_type }}' then 1 else 0 end) as {{ sentiment_type }}_amount
+            sum(case when review_sentiment = '{{ sentiment_type }}' then 1 else 0 end) as {{ sentiment_type }}_amount
 
         {%- if not loop.last -%}
             ,
@@ -31,9 +31,9 @@ select * from final
 -- final as (
 --     select
 --         listing_id,
---         sum(case when listing_sentiment = 'negative' then 1 else 0 end) as negative_amount,
---         sum(case when listing_sentiment = 'neutral' then 1 else 0 end) as neutral_amount,
---         sum(case when listing_sentiment = 'positive' then 1 else 0 end) as positive_amount
+--         sum(case when review_sentiment = 'negative' then 1 else 0 end) as negative_amount,
+--         sum(case when review_sentiment = 'neutral' then 1 else 0 end) as neutral_amount,
+--         sum(case when review_sentiment = 'positive' then 1 else 0 end) as positive_amount
 --     from reviews
 --     group by 1
 -- )
